@@ -14,6 +14,32 @@ export class PermissionController {
     user: IUser;
     permission: string;
   }): IPermissionCheckResponse {
-    return;
+    let result: IPermissionCheckResponse;
+
+    if (!permissionParams || !permissionParams.user) {
+      result = {
+        status: HttpStatus.BAD_REQUEST,
+        message: 'permission_check_bad_request',
+        errors: null,
+      };
+    } else {
+      const allowedPermissions = this.confirmedStrategy.getAllowedPermissions(
+        permissionParams.user,
+        permissions,
+      );
+      const isAllowed = allowedPermissions.includes(
+        permissionParams.permission,
+      );
+
+      result = {
+        status: isAllowed ? HttpStatus.OK : HttpStatus.FORBIDDEN,
+        message: isAllowed
+          ? 'permission_check_success'
+          : 'permission_check_forbidden',
+        errors: null,
+      };
+    }
+
+    return result;
   }
 }
