@@ -12,9 +12,11 @@ export const UserLinkSchema = new mongoose.Schema(
   {
     user_id: {
       type: String,
+      required: [true, 'User ID can not be empty'],
     },
     is_used: {
-      type: Boolean
+      type: Boolean,
+      default: false,
     },
     link: {
       type: String,
