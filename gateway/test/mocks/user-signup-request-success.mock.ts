@@ -1,4 +1,4 @@
 export const userSignupRequestSuccess = {
-  email: 'test@bionictest.com',
+  email: 'test@denrox.com6',
   password: 'test111',
 };
