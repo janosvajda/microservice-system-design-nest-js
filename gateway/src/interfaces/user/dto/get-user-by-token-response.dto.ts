@@ -7,7 +7,7 @@ export class GetUserByTokenResponseDto {
   @ApiProperty({
     example: {
       user: {
-        email: 'test@denrox.com1',
+        email: 'test@bionictest.com',
         is_confirmed: true,
         id: '5d987c3bfb881ec86b476bcc',
       },
