@@ -23,10 +23,13 @@ export const UserSchema = new mongoose.Schema<IUserSchema>(
       type: String
     },
     is_confirmed: {
-      type: Boolean
+      type: Boolean,
+      required: [true, 'Confirmed can not be empty'],
     },
     password: {
-      type: String
+      type: String,
+      required: [true, 'Password can not be empty'],
+      minlength: [6, 'Password should include at least 6 chars'],
     },
   },
   {
@@ -42,3 +45,4 @@ export const UserSchema = new mongoose.Schema<IUserSchema>(
     },
   },
 );
+
