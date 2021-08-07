@@ -7,9 +7,9 @@ export class CreateUserResponseDto {
   @ApiProperty({
     example: {
       user: {
-        email: 'test@bionictest.com',
+        email: 'test@denrox.com2',
         is_confirmed: false,
-        id: '4a73mf3bfb8h1ecf6b476ba2',
+        id: '5d987c3bfb881ec86b476bcc',
       },
     },
     nullable: true,
