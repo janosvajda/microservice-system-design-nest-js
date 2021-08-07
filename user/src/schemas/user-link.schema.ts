@@ -17,7 +17,8 @@ export const UserLinkSchema = new mongoose.Schema(
       type: Boolean
     },
     link: {
-      type: String
+      type: String,
+      default: generateLink(),
     },
   },
   {
