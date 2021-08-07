@@ -1,13 +1,13 @@
 export const userSignupRequestFailShortPw = {
-  email: 'test@denrox.com3',
+  email: 'test@denrox.com',
   password: 'test1',
 };
 
 export const userSignupRequestFailNoPw = {
-  email: 'test@denrox.com4',
+  email: 'test@denrox.com',
 };
 
 export const userSignupRequestFailInvalidEmail = {
-  email: 'testdenrox.com5',
+  email: 'testdenrox.com',
   password: 'test11',
 };

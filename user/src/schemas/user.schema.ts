@@ -20,7 +20,12 @@ export interface IUserSchema extends mongoose.Document {
 export const UserSchema = new mongoose.Schema<IUserSchema>(
   {
     email: {
-      type: String
+      type: String,
+      required: [true, 'Email can not be empty'],
+      match: [
+        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+        'Email should be valid',
+      ],
     },
     is_confirmed: {
       type: Boolean,
@@ -46,3 +51,18 @@ export const UserSchema = new mongoose.Schema<IUserSchema>(
   },
 );
 
+UserSchema.methods.getEncryptedPassword = (password: string): Promise<string> => {
+  return bcrypt.hash(String(password), SALT_ROUNDS);
+};
+
+UserSchema.methods.compareEncryptedPassword = function (password: string) {
+  return bcrypt.compare(password, this.password);
+};
+
+UserSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) {
+    return next();
+  }
+  this.password = await this.getEncryptedPassword(this.password);
+  next();
+});
