@@ -105,3 +105,6 @@ dist
 
 # Editor's config files
 .idea/
+
+# Mac sys files
+.DS_Store
